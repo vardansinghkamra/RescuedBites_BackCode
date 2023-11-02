@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Page - RescuedBites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+        .user-container {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .search-form {
+            text-align: left;
+            margin-bottom: 20px;
+            margin-left: 15px;
+        }
+        .search-form input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .search-form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='cheese-piece-icon.png') }}" alt="RescuedBites Logo">
+            <span style="font-size: 20px; font-weight: bold;">RESCUEDBITES</span>
+        </div>
+        <div>
+            <a href="/">Home</a>
+            <a href="/search">Search</a>
+            <a href="/user">My Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="user-container">
+        <h2>Welcome, {{ username }}!</h2>
+        <form class = "search-form" method="post" action="/add_item">
+            <input type="text" name="new_item" placeholder="Add new item">
+            <input type="submit" value="Add">
+        </form>
+        <h3>Your Pantry:</h3>
+        <ul>
+            {% for item in pantry %}
+                <form method="post" action="/remove_item">
+                    <li>{{ item }} {% if pantry %}<button type="submit" name="remove_item" value="{{ item }}" style="background: none; border: none; color: red; cursor: pointer;">(Remove)</button>{% endif %}</li>
+                </form>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

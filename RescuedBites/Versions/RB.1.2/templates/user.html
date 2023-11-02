@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Page - RescuedBites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+        .user-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='cheese-piece-icon.png') }}" alt="RescuedBites Logo">
+            <span style="font-size: 20px; font-weight: bold;">RESCUEDBITES</span>
+        </div>
+        <div>
+            <a href="/">Home</a>
+            <a href="/search">Search</a>
+            <a href="/user">My Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="user-container">
+        <h2>Welcome, {{ username }}!</h2>
+        <p>This is your personalized page.</p>
+        <p><a href="/logout">Logout</a></p>
+    </div>
+</body>
+</html>
